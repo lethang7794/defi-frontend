@@ -23,7 +23,7 @@ function App() {
     } else {
       setTimeout(() => {
         dispatch(authActions.logout());
-      }, 300);
+      }, 500);
     }
   }, [dispatch]);
 

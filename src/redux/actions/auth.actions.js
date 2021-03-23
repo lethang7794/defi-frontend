@@ -32,7 +32,12 @@ const getCurrentUser = (accessToken) => async (dispatch) => {
   try {
     api.defaults.headers.common['authorization'] = accessToken;
     const res = await api.get(`/users/me`);
-    dispatch({ type: types.GET_CURRENT_USER_SUCCESS, payload: res.data.data });
+    setTimeout(() => {
+      dispatch({
+        type: types.GET_CURRENT_USER_SUCCESS,
+        payload: res.data.data,
+      });
+    }, 500);
   } catch (error) {
     dispatch({ type: types.GET_CURRENT_USER_FAILURE, payload: error });
   }
