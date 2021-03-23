@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -6,12 +6,15 @@ import { authActions } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
 import logoHorizontal from '../../images/logo-horizontal.png';
 // import githubMark from '../../images/GitHub-Mark-64px.png';
+import { Cross as Hamburger } from 'hamburger-react';
 import './style.css';
 
 const PublicNavBar = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const loading = useSelector((state) => state.auth.loading);
   const dispatch = useDispatch();
+
+  const [isOpen, setOpen] = useState(false);
 
   const handleLogout = () => {
     dispatch(authActions.logout());
@@ -49,7 +52,7 @@ const PublicNavBar = () => {
     <Navbar
       expand='lg'
       style={{
-        padding: '0.75rem 1rem',
+        padding: '0.75rem 0rem',
         borderTop: '8px solid hsl(211, 100%, 50%)',
       }}
       collapseOnSelect
@@ -60,7 +63,9 @@ const PublicNavBar = () => {
         </Nav.Link>
       </Navbar.Brand>
 
-      <Navbar.Toggle aria-controls='basic-navbar-nav' />
+      <Navbar.Toggle aria-controls='basic-navbar-nav'>
+        <Hamburger toggled={isOpen} toggle={setOpen} />
+      </Navbar.Toggle>
 
       <Navbar.Collapse id='basic-navbar-nav'>
         <Nav className='mx-auto'></Nav>
