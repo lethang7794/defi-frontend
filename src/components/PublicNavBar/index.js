@@ -39,7 +39,7 @@ const PublicNavBar = () => {
 
   const authLinks = (
     <Nav>
-      <Nav.Link as={NavLink} to='/admin/profile' eventKey='4'>
+      <Nav.Link as={NavLink} to='/admin' eventKey='4'>
         Admin
       </Nav.Link>
       <Nav.Link onClick={handleLogout} eventKey='5'>

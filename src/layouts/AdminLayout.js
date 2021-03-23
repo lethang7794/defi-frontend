@@ -14,7 +14,7 @@ const AdminLayout = () => {
           <Col>
             <AlertMsg />
             <Switch>
-              <Route exact path='/'>
+              <Route exact path='/admin'>
                 Admin Page
               </Route>
               <Route component={NotFoundPage} />
