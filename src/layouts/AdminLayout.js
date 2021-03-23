@@ -11,7 +11,7 @@ const AdminLayout = () => {
       <PublicNavBar />
       <Container fluid>
         <Row>
-          <Col md={9} lg={10}>
+          <Col>
             <AlertMsg />
             <Switch>
               <Route exact path='/'>
