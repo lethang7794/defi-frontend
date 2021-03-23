@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-// import { Redirect } from 'react-router';
+import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
-import authActions from '../redux/actions/auth.actions';
+import { authActions } from '../redux/actions/auth.actions';
 
 import loginImage from '../images/login.png';
 
@@ -17,7 +17,7 @@ const LoginPage = () => {
     password: '',
   });
   const dispatch = useDispatch();
-  // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const loading = useSelector((state) => state.auth.loading);
 
   const handleChange = (e) =>
@@ -33,7 +33,7 @@ const LoginPage = () => {
     dispatch(authActions.loginRequest({ email, password }));
   };
 
-  // if (!isAuthenticated) return <Redirect to='/' />;
+  if (isAuthenticated) return <Redirect to='/' />;
 
   return (
     <div className='container'>

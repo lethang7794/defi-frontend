@@ -1,9 +1,7 @@
 import * as types from '../constants/auth.constants';
 const initialState = {
   user: {},
-  isAuthenticated: null,
   loading: false,
-  messages: [],
 };
 
 const authReducer = (state = initialState, action) => {
@@ -15,6 +13,7 @@ const authReducer = (state = initialState, action) => {
       return { ...state, loading: true };
 
     case types.LOGIN_SUCCESS:
+      localStorage.setItem('accessToken', payload.accessToken);
       return {
         ...state,
         user: payload.user,

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import authActions from '../redux/actions/auth.actions';
+import { authActions } from '../redux/actions/auth.actions';
 
 import signupImage from '../images/signup.png';
 

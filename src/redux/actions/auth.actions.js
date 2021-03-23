@@ -45,11 +45,9 @@ const logout = () => (dispatch) => {
   dispatch({ type: types.LOGOUT_REQUEST, payload: null });
 };
 
-const authActions = {
+export const authActions = {
   loginRequest,
   register,
   getCurrentUser,
   logout,
 };
-
-export default authActions;

@@ -3,10 +3,13 @@ import { useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
+import Loader from 'react-loader-spinner';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-import authActions from './redux/actions/auth.actions';
+import { authActions } from './redux/actions/auth.actions';
 import Routes from './components/Routes';
 
 function App() {
@@ -18,7 +21,9 @@ function App() {
     if (accessToken && accessToken !== 'undefined') {
       dispatch(authActions.getCurrentUser(accessToken));
     } else {
-      dispatch(authActions.logout());
+      setTimeout(() => {
+        dispatch(authActions.logout());
+      }, 300);
     }
   }, [dispatch]);
 
@@ -32,7 +37,14 @@ function App() {
     >
       <>
         {isAuthenticated === undefined ? (
-          <p>Loading...</p>
+          <div className='vh-100 vw-100 d-flex justify-content-center align-items-center'>
+            <Loader
+              type='ThreeDots'
+              color='hsl(211, 100%, 50%)'
+              height={80}
+              width={80}
+            />
+          </div>
         ) : (
           <Router>
             <Routes />
