@@ -47,7 +47,6 @@ const PublicNavBar = () => {
 
   return (
     <Navbar
-      bg='light'
       expand='lg'
       style={{
         padding: '0.75rem 1rem',
