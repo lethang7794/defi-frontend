@@ -11,6 +11,10 @@ import './style.css';
 
 const PublicNavBar = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
+  const user = useSelector((state) => state.auth.user);
+  const isAdmin = user && user.role === 'admin';
+
   const loading = useSelector((state) => state.auth.loading);
   const dispatch = useDispatch();
 
@@ -38,6 +42,14 @@ const PublicNavBar = () => {
   );
 
   const authLinks = (
+    <Nav>
+      <Nav.Link onClick={handleLogout} eventKey='5'>
+        Logout
+      </Nav.Link>
+    </Nav>
+  );
+
+  const adminLinks = (
     <Nav>
       <Nav.Link as={NavLink} to='/admin' eventKey='4'>
         Admin
@@ -69,7 +81,13 @@ const PublicNavBar = () => {
 
       <Navbar.Collapse id='basic-navbar-nav'>
         <Nav className='mx-auto'></Nav>
-        {!loading && <>{isAuthenticated ? authLinks : publicLinks}</>}
+        {!loading && (
+          <>
+            <>{!isAuthenticated && publicLinks}</>
+            <>{isAuthenticated && !isAdmin && authLinks}</>
+            <>{isAuthenticated && isAdmin && adminLinks}</>
+          </>
+        )}
       </Navbar.Collapse>
     </Navbar>
   );
