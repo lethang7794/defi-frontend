@@ -1,0 +1,10 @@
+.login__image {
+  display: none;
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media (min-width: 768px) {
+  .login__image {
+    display: block;
+  }
+}
